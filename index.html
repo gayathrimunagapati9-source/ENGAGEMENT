@@ -107,10 +107,22 @@
 
   /* ================= COVER ================= */
   #cover{
-    background:radial-gradient(ellipse at 50% 20%, var(--maroon-light) 0%, var(--maroon) 45%, var(--maroon-deep) 100%);
+    position:relative;
+    overflow:hidden;
+    background:url("images/temple-bg.jpg") center center/cover no-repeat;
     color:var(--gold-pale);
     cursor:pointer;
   }
+  #cover::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(30,10,5,.55);
+}
+#cover>*{
+    position:relative;
+    z-index:2;
+}
   #cover .arch-frame{
     width:min(78vw, 340px);
     margin-bottom:6px;
@@ -178,7 +190,41 @@
 
   #cover.closed{display:flex;}
   #cover.hidden{display:none;}
+sun{
+    position:absolute;
 
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+    rgba(255,220,120,.95),
+    rgba(255,180,70,.4),
+    transparent);
+
+    top:-80px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    animation:sunGlow 5s ease-in-out infinite;
+}
+
+@keyframes sunGlow{
+
+0%,100%{
+transform:translateX(-50%) scale(1);
+}
+
+50%{
+transform:translateX(-50%) scale(1.1);
+}
+
+}
+<div id="cover" class="section closed">
+<div class="sun"></div>
+  
   /* ================= HERO ================= */
   #hero{
     background:linear-gradient(180deg, var(--ivory) 0%, #f6ead0 100%);
